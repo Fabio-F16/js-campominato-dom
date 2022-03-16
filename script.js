@@ -15,31 +15,7 @@ I numeri nella lista delle bombe non possono essere duplicati.
 */
 
 
-// -----------------------------------------funzioni
-
-
-
-
-
-
-// genero un numero random (non utilizzata)
-function generateRandomNumber(min, max) {
-    const range = (max - min) + 1;
-    const numeroRandom = Math.floor(Math.random() * range + min);
-    return numeroRandom;
-}
-// fine genero un numero random (non utilizzata)
-
-
-
-
-// creo una cella nel DOM
-function createCell() {
-    const cell = document.createElement('div');
-    cell.classList.add('cell');
-    return cell;
-}
-// fine creo una cella nel DOM
+// -------------------------------------------------------funzioni
 
 
 // funzione creazione griglia
@@ -65,6 +41,7 @@ function creazioneCampo(totalCells, levelClass) {
             if (leBombe) {
                 cell.classList.add('bg-color-red');
                 alert('Hai perso!')
+
             } else {
                 cell.classList.add('bg-color-aqua');
             }
@@ -75,20 +52,36 @@ function creazioneCampo(totalCells, levelClass) {
 // fine funzione creazione griglia
 
 
+// genero un numero random 
+function generateRandomNumber(min, max) {
+    const range = (max - min) + 1;
+    const numeroRandom = Math.floor(Math.random() * range + min);
+    return numeroRandom;
+}
+// fine genero un numero random 
+
+
+// creo una cella nel DOM
+function createCell() {
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    return cell;
+}
+// fine creo una cella nel DOM
 
 // creazione bombe
 function createBombs(max) {
 
-    // creo un array vuoto dove inserire le posizioni
+    // creo un array vuoto dove inserire i numeri random
     const arrayBombs = [];
 
     // creo un ciclo per creare massimo 16 numeri
     while (arrayBombs.length < 16) {
 
-        //creo la posizione random 
+        //creo numero random 
         const number = generateRandomNumber(1, max)
 
-        // se position non è presente all'interno dell'array, lo aggiungo
+        // se il numero non è presente all'interno dell'array, lo aggiungo
         if (!arrayBombs.includes(number)) {
             arrayBombs.push(number);
         }
