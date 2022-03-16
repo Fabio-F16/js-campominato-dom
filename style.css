@@ -10,7 +10,6 @@
     margin: auto;
     width: 500px;
     height: 500px;
-    
     display: flex;
     flex-wrap: wrap;
 }
@@ -44,4 +43,17 @@
     width: calc(100% / 7);
     height: calc(100% / 7);
 }
-    
+
+.youLose{
+    border: 5px solid red;
+    background-color:black;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.bomb{
+    background-image: url(bomb-3175208.png);
+    background-size: contain;
+    background-position: center center;
+}
+

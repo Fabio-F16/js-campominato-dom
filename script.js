@@ -40,7 +40,9 @@ function creazioneCampo(totalCells, levelClass) {
 
             if (leBombe) {
                 cell.classList.add('bg-color-red');
+                cell.classList.add('bomb');
                 alert('Hai perso!')
+                square.classList.add("youLose");
 
             } else {
                 cell.classList.add('bg-color-aqua');
