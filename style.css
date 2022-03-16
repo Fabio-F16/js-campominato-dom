@@ -20,6 +20,10 @@
     background-color: aqua;
 }
 
+.bg-color-red{
+    background-color: red;
+}
+
 
 .cell{
     border: 1px solid black;
