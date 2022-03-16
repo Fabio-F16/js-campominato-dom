@@ -1,0 +1,43 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+
+#square{
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.bg-color-aqua{
+    background-color: aqua;
+}
+
+
+.cell{
+    border: 1px solid black;
+    text-align: center;
+}
+
+.cell-10{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.cell-9{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.cell-7{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+    
