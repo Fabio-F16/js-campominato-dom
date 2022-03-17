@@ -23,6 +23,7 @@ function creazioneCampo(totalCells, levelClass) {
 
     const square = document.getElementById('square');
     square.innerHTML = '';
+
     const arrayBombe = createBombs(totalCells);
 
     for (let i = 1; i <= totalCells; i++) {
@@ -41,9 +42,8 @@ function creazioneCampo(totalCells, levelClass) {
             if (leBombe) {
                 cell.classList.add('bg-color-red');
                 cell.classList.add('bomb');
-                alert('Hai perso!')
+                // alert('Hai perso!')
                 square.classList.add("youLose");
-
             } else {
                 cell.classList.add('bg-color-aqua');
             }
@@ -109,10 +109,4 @@ const difficoltàTre = document.querySelector('.difficoltàTre');
 difficoltàUno.addEventListener('click', () => creazioneCampo(100, 'cell-10'));
 difficoltàDue.addEventListener('click', () => creazioneCampo(81, 'cell-9'));
 difficoltàTre.addEventListener('click', () => creazioneCampo(49, 'cell-7'));
-
-
-
-
-
-
 
