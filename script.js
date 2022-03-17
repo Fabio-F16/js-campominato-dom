@@ -15,75 +15,58 @@ I numeri nella lista delle bombe non possono essere duplicati.
 */
 
 
-// -------------------------------------------------------funzioni
+// console.log('jooo')
 
 
-// funzione creazione griglia
+// funzione creazione campo di gioco    FUNZIONE MADRE ------------------------------------------
 function creazioneCampo(totalCells, levelClass) {
 
     const square = document.getElementById('square');
+
+    createCell(totalCells, levelClass);
+
+    const arrayBombs = createBombs(totalCells);
+
+    clickEvents(arrayBombs); // evento click sulla cella
+
+}
+// fine funzione creazione campo di gioco FUNZIONE MADRE-------------------------------------------
+
+
+// -------------------------------------------------------funzioni-----------------------------------------------------------------
+
+
+// creazione griglia di gioco
+function createCell(totalCells, levelClass) {
+
+    const square = document.getElementById('square');
     square.innerHTML = '';
-
-    const arrayBombe = createBombs(totalCells);
-
     for (let i = 1; i <= totalCells; i++) {
 
-        const cell = createCell();
+        const cell = document.createElement('div');
+
+        cell.classList.add('cell');
         cell.classList.add(levelClass);
 
         let number = i
         cell.innerText = number;
+
         square.appendChild(cell);
-
-        cell.addEventListener('click', () => {
-
-            const leBombe = arrayBombe.includes(i);
-
-            if (leBombe) {
-                cell.classList.add('bg-color-red');
-                cell.classList.add('bomb');
-                // alert('Hai perso!')
-                square.classList.add("youLose");
-            } else {
-                cell.classList.add('bg-color-aqua');
-            }
-        })
-
     }
+
 }
-// fine funzione creazione griglia
+// fine creazione griglia di gioco
 
-
-// genero un numero random 
-function generateRandomNumber(min, max) {
-    const range = (max - min) + 1;
-    const numeroRandom = Math.floor(Math.random() * range + min);
-    return numeroRandom;
-}
-// fine genero un numero random 
-
-
-// creo una cella nel DOM
-function createCell() {
-    const cell = document.createElement('div');
-    cell.classList.add('cell');
-    return cell;
-}
-// fine creo una cella nel DOM
 
 // creazione bombe
 function createBombs(max) {
 
-    // creo un array vuoto dove inserire i numeri random
     const arrayBombs = [];
 
-    // creo un ciclo per creare massimo 16 numeri
     while (arrayBombs.length < 16) {
 
-        //creo numero random 
         const number = generateRandomNumber(1, max)
 
-        // se il numero non è presente all'interno dell'array, lo aggiungo
         if (!arrayBombs.includes(number)) {
             arrayBombs.push(number);
         }
@@ -94,10 +77,85 @@ function createBombs(max) {
 }
 // fine creazione bombe
 
-// -----------------------------------------------------fine funzioni
+
+// funzione grande, eventi clickEvents
+function clickEvents(arrayBombs) {
+    let punteggio = 0;
+    const square = document.getElementById('square');
+    const allCells = document.querySelectorAll('.cell');
+    // let punteggio = 0;
+
+    for (let i = 0; i < allCells.length; i++) {
+        const cell = allCells[i];
+        const domPunteggio = document.querySelector('.punteggio');
+        cell.addEventListener('click', () => {
+
+            // se dentro la cella c'è la bomba, si colora di rosso
+            // altrimenti azzurro
+            const gameOver = checkClick(cell, i, arrayBombs); // checkClick è il se ho ed perso eventi colore
+
+            if (gameOver) {
+                finishGame(cell, arrayBombs, i);
+                domPunteggio.innerText = (`${punteggio} ed è il tuo risultato finale, mi dispiace, hai perso :-( `)
+            } else {
+                punteggio++
+                console.log(punteggio);
+                domPunteggio.innerText = punteggio;
+            }
+        });
+    }
+
+
+}
+// fine funzione grande, eventi clickEvents
+
+//  inizio funzione controllo clickEvents
+function checkClick(cells, iterationNumber, arrayBombs) {
+
+    const isBomb = arrayBombs.includes(iterationNumber + 1);
+
+    if (isBomb) {
+        cells.classList.add('bg-color-red');
+    } else {
+        cells.classList.add('bg-color-aqua');
+    }
+
+    return isBomb;
+
+}
+
+// fine dei giochi
+function finishGame(cell, arrayBombs, i) {
+
+    const square = document.getElementById('square');
+    const allCells = document.querySelectorAll('.cell');
+
+    for (let i = 0; i < allCells.length; i++) {
+
+        const bombCell = allCells[i];
+
+        if (arrayBombs.includes(i + 1)) {
+            bombCell.classList.add('bg-color-red');
+            bombCell.classList.add('bomb');
+            square.classList.add('youLose');
+        }
+    }
+}
+// fine fine dei giochi
+
+// genero un numero random 
+function generateRandomNumber(min, max) {
+    const range = (max - min) + 1;
+    const numeroRandom = Math.floor(Math.random() * range + min);
+    return numeroRandom;
+}
+// fine genero un numero random 
+
+// -----------------------------------------------------fine funzioni--------------------------------------------------------------------
 
 
 
+// preparazione all'esecuzione
 
 // chiamo bottoni genera griglia
 const difficoltàUno = document.querySelector('.difficoltàUno');
@@ -109,4 +167,3 @@ const difficoltàTre = document.querySelector('.difficoltàTre');
 difficoltàUno.addEventListener('click', () => creazioneCampo(100, 'cell-10'));
 difficoltàDue.addEventListener('click', () => creazioneCampo(81, 'cell-9'));
 difficoltàTre.addEventListener('click', () => creazioneCampo(49, 'cell-7'));
-
