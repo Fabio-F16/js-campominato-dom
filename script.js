@@ -41,6 +41,8 @@ function createCell(totalCells, levelClass) {
 
     const square = document.getElementById('square');
     square.innerHTML = '';
+    square.classList.remove('youLose');
+
     for (let i = 1; i <= totalCells; i++) {
 
         const cell = document.createElement('div');
@@ -77,7 +79,6 @@ function createBombs(max) {
 }
 // fine creazione bombe
 
-
 // funzione grande, eventi clickEvents
 function clickEvents(arrayBombs) {
     let punteggio = 0;
@@ -98,7 +99,6 @@ function clickEvents(arrayBombs) {
                 domPunteggio.innerText = (`${punteggio} ed è il tuo risultato finale, mi dispiace, hai perso :-( `)
             } else {
                 punteggio++
-                console.log(punteggio);
                 domPunteggio.innerText = punteggio;
             }
         });
