@@ -83,15 +83,14 @@ function clickEvents(arrayBombs) {
     let punteggio = 0;
     const square = document.getElementById('square');
     const allCells = document.querySelectorAll('.cell');
-    // let punteggio = 0;
 
     for (let i = 0; i < allCells.length; i++) {
+
         const cell = allCells[i];
         const domPunteggio = document.querySelector('.punteggio');
+
         cell.addEventListener('click', () => {
 
-            // se dentro la cella c'è la bomba, si colora di rosso
-            // altrimenti azzurro
             const gameOver = checkClick(cell, i, arrayBombs); // checkClick è il se ho ed perso eventi colore
 
             if (gameOver) {
