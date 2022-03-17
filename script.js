@@ -9,9 +9,7 @@ con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49 
 
 Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
-I numeri nella lista delle bombe non possono essere duplicati.
-
-
+I numeri nella lista delle bombe non possono essere duplicati. 
 */
 
 
@@ -21,7 +19,6 @@ I numeri nella lista delle bombe non possono essere duplicati.
 // funzione creazione campo di gioco    FUNZIONE MADRE ------------------------------------------
 function creazioneCampo(totalCells, levelClass) {
 
-    const square = document.getElementById('square');
 
     createCell(totalCells, levelClass);
 
@@ -64,16 +61,16 @@ function createCell(totalCells, levelClass) {
 function createBombs(max) {
 
     const arrayBombs = [];
-
+    const totalBombs = 16;
     while (arrayBombs.length < 16) {
 
-        const number = generateRandomNumber(1, max)
+        const number = generateRandomNumber(1, max);
 
         if (!arrayBombs.includes(number)) {
             arrayBombs.push(number);
         }
     }
-    console.log(arrayBombs)
+    console.log(arrayBombs);
 
     return arrayBombs;
 }
@@ -122,6 +119,9 @@ function checkClick(cells, iterationNumber, arrayBombs) {
     return isBomb;
 
 }
+//  fine funzione controllo clickEvents
+
+
 
 // fine dei giochi
 function finishGame(cell, arrayBombs, i) {
